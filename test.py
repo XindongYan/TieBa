@@ -2,17 +2,15 @@ from urllib import request
 import re
 import os
 
-req = 'https://tieba.baidu.com/p/5366093412'
+# url = 'https://tieba.baidu.com/p/5366093412'
+url = input('输入贴吧链接：')
+url = str(url)
 
-with request.urlopen('https://tieba.baidu.com/p/5366093412') as f:
+
+with request.urlopen(url) as f:
     data = f.read()
 
-    url = 'https://tieba.baidu.com/p/5366093412'
-
-
     title = re.compile('<title>(.*?)_百度贴吧</title>').findall(data.decode('utf-8'))
-
-    print(title)
 
     try:
         title = re.compile('<title>(.*?)_百度贴吧</title>').findall(data.decode('utf-8'))
@@ -23,7 +21,6 @@ with request.urlopen('https://tieba.baidu.com/p/5366093412') as f:
         print("出现错误")
 
 
-url = 'https://tieba.baidu.com/p/5366093412'
 def page(url):
     start = input("开始页码：")
     end = input("结束页码：")
@@ -57,4 +54,4 @@ def image_content(url):
 
 # create_file(url)
 page(url)
-image_content(req)
+image_content(url)
